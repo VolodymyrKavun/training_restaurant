@@ -11,12 +11,13 @@ const getData = async () => {
     throw new Error("Failed!");
   }
 
-  return res.json();
+  const data = await res.json();
+
+  return data;
 };
 
-const menu: MenuType = await getData();
-
-const MenuPage = () => {
+const MenuPage = async () => {
+  const menu: MenuType = await getData();
   return (
     <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center">
       {menu.map((category) => (
