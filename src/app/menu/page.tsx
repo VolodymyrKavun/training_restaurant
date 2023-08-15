@@ -1,26 +1,26 @@
-import { MenuType } from "@/types/types";
-import Link from "next/link";
+// import { MenuType } from "@/types/types";
+// import Link from "next/link";
 import React from "react";
 
-const getData = async () => {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/categories`, {
-    cache: "no-store",
-  });
+// const getData = async () => {
+//   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/categories`, {
+//     cache: "no-store",
+//   });
 
-  if (!res.ok) {
-    throw new Error("Failed!");
-  }
+//   if (!res.ok) {
+//     throw new Error("Failed in Menu!");
+//   }
 
-  const data = await res.json();
+//   const data = await res.json();
 
-  return data;
-};
+//   return data;
+// };
 
 const MenuPage = async () => {
-  const menu: MenuType = await getData();
+  // const menu: MenuType = await getData();
   return (
     <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center">
-      {menu.map((category) => (
+      {/* {menu.map((category) => (
         <Link
           href={`/menu/${category.slug}`}
           key={category.id}
@@ -39,7 +39,7 @@ const MenuPage = async () => {
             </button>
           </div>
         </Link>
-      ))}
+      ))} */}
     </div>
   );
 };
