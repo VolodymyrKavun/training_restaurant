@@ -12,8 +12,6 @@ export async function getCategory(props: any) {
     if (res.status === 200) {
       return data;
     }
-
-    return data;
   } catch (error) {
     console.log(error);
   }
