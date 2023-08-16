@@ -2,29 +2,72 @@ import { ProductType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { getCategory } from "@/app/lib/get-category";
+// import { getCategory } from "@/app/lib/get-category";
 
-// const getData = async (category: string) => {
+const getData = async (category: string) => {
+  const res = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/products?cat=${category}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed!");
+  }
+
+  return res.json();
+};
+
+// before
+
+// export const getStaticPaths: GetStaticPaths = async (
+//   category: ProductType
+// ) => {
 //   const res = await fetch(
 //     `${process.env.NEXTAUTH_URL}/api/products?cat=${category}`,
 //     {
 //       cache: "no-store",
 //     }
 //   );
-
-//   if (!res.ok) {
-//     throw new Error("Failed!");
-//   }
-
-//   return res.json();
+//   const posts = await res.json();
+//   const paths = posts.map(({ category }: { category: ProductType }) => ({
+//     params: { category },
+//   }));
+//   return {
+//     paths,
+//     fallback: true,
+//     //The paths that have not been generated at build time will not result in a 404 page.
+//     //Instead, fallback: true This will be used to automatically render
+//     //the page with the required props.
+//   };
 // };
+
+// export const getStaticPaths: GetStaticPaths = async (category: ProductType) => {
+//   // fetch list of available slugs from a database
+//   const res = await fetch(
+//     `${process.env.NEXTAUTH_URL}/api/products?cat=${category}`,
+//     {
+//       cache: "no-store",
+//     }
+//   );
+//   const posts = await res.json();
+//   const categories = posts.map((post: any) => post.category);
+
+//   // return the possible values for the [slug] parameter
+//   return {
+//     paths: categories.map((category: any) => ({ params: { category } })),
+//     fallback: false,
+//   };
+// };
+// after
 
 type Props = {
   params: { category: string };
 };
 
 const CategoryPage = async ({ params }: Props) => {
-  const products: ProductType[] = await getCategory(params.category);
+  const products: ProductType[] = await getData(params.category);
   // console.log("🚀 ~ products:", products);
 
   return (
