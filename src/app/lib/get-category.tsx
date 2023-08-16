@@ -7,6 +7,10 @@ export async function getCategory(props: any) {
       }
     );
 
+    if (!res.ok) {
+      throw new Error("Failed in categories!");
+    }
+
     const data = await res.json();
 
     if (res.status === 200) {

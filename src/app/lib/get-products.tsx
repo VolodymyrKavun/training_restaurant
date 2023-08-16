@@ -4,6 +4,10 @@ export async function getProducts() {
       cache: "no-store",
     });
 
+    if (!res.ok) {
+      throw new Error("Failed in products!");
+    }
+
     const data = await res.json();
 
     if (res.status === 200) {
