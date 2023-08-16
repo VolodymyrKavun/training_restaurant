@@ -3,18 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useSession, signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 const LoginPage = () => {
   const { status } = useSession();
-  const router = useRouter();
+  // const router = useRouter();
 
   if (status === "loading") {
     return <p>Loading...</p>;
   }
 
   if (status === "authenticated") {
-    router.push("/");
+    // router.push("/");
+    redirect("/");
   }
   return (
     <div className="p-4 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex items-center justify-center">

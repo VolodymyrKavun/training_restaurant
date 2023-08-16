@@ -3,7 +3,8 @@ import React from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { OrderType } from "@/types/types";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import Image from "next/image";
 import { toast } from "react-toastify";
 
@@ -15,10 +16,11 @@ type Mutation = {
 const OrdersPage = () => {
   const { data: session, status } = useSession();
 
-  const router = useRouter();
+  // const router = useRouter();
 
   if (status === "unauthenticated") {
-    router.push("/");
+    // router.push("/");
+    redirect("/");
   }
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
