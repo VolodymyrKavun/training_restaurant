@@ -2,28 +2,30 @@ import { ProductType } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { getCategory } from "@/app/lib/get-category";
 
-const getData = async (category: string) => {
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/products?cat=${category}`,
-    {
-      cache: "no-store",
-    }
-  );
+// const getData = async (category: string) => {
+//   const res = await fetch(
+//     `${process.env.NEXTAUTH_URL}/api/products?cat=${category}`,
+//     {
+//       cache: "no-store",
+//     }
+//   );
 
-  if (!res.ok) {
-    throw new Error("Failed!");
-  }
+//   if (!res.ok) {
+//     throw new Error("Failed!");
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
 
 type Props = {
   params: { category: string };
 };
 
 const CategoryPage = async ({ params }: Props) => {
-  const products: ProductType[] = await getData(params.category);
+  const products: ProductType[] = await getCategory(params.category);
+  // console.log("🚀 ~ products:", products);
 
   return (
     <div className="flex flex-wrap text-red-500">
