@@ -1,5 +1,5 @@
 import { prisma } from "@/utils/connect";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
 type Props = {
   params: {
@@ -7,7 +7,7 @@ type Props = {
   };
 };
 
-export const PUT = async ({ params }: Props) => {
+export const PUT = async (req: NextRequest, { params }: Props) => {
   const { intentId } = params;
   // console.log("🚀 ~ intentId:", intentId);
 
