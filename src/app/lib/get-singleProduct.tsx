@@ -1,14 +1,14 @@
-export async function getCategory(props: any) {
+export async function getSingleProduct(id: string) {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/products?cat=${props}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/products/${id}`,
       {
         cache: "no-store",
       }
     );
 
     if (!res.ok) {
-      throw new Error("Failed in categories!");
+      throw new Error("Failed in Menu!");
     }
 
     const data = await res.json();

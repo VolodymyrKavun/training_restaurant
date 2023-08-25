@@ -1,6 +1,6 @@
 export async function getProducts() {
   try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/products`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
       cache: "no-store",
     });
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import CartIcon from "./CartIcon";
 import Image from "next/image";
 import UserLinks from "./UserLinks";
+import ResetButton from "./ResetButton";
 
 export default async function Navbar() {
   const user = false;
@@ -32,6 +33,7 @@ export default async function Navbar() {
         </div>
         <UserLinks />
         <CartIcon />
+        <ResetButton />
       </div>
     </div>
   );

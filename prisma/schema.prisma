@@ -61,7 +61,7 @@ model Category {
   id        String    @id @default(cuid())
   createdAt DateTime  @default(now())
   title     String
-  decs      String
+  desc      String
   color     String
   img       String
   slug      String    @unique
@@ -72,7 +72,7 @@ model Product {
   id         String   @id @default(cuid())
   createdAt  DateTime @default(now())
   title      String
-  decs       String
+  desc       String
   img        String?
   price      Decimal
   isFeatured Boolean  @default(false)
@@ -87,7 +87,7 @@ model Order {
   price     Decimal
   products  Json[]
   status    String
-  intend_id String?  @unique
+  intent_id String?  @unique
   user      User     @relation(fields: [userEmail], references: [email])
   userEmail String
 }
